@@ -1,4 +1,4 @@
-using AdventOfCode2019;
+using AdventOfCode2019.Day1;
 using Xunit;
 
 namespace AoCTests

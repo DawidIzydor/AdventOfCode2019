@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelpingLibrary;
 
-namespace AdventOfCode2019
+namespace AdventOfCode2019.Day1
 {
     public class Day1Part1
     {

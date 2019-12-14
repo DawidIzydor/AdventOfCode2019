@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AdventOfCode2019
+namespace AdventOfCode2019.Day1
 {
     public class Day1Part2 : Day1Part1
     {
