@@ -3,13 +3,16 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2019
 {
-    class Program
+    internal class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            var day1Result = await new Day1().Result("day1_input");
+            var inputDataName = "day1_input";
+            //var result = await new Day1_part1().Result(inputDataName);
+            var result = await new Day1Part2().Result(inputDataName);
 
-            Console.WriteLine(day1Result);
+
+            Console.WriteLine(result);
         }
     }
 }
