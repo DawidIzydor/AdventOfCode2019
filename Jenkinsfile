@@ -3,7 +3,7 @@ node{
 		checkout scm
 	}
 
-	stage 'restore nuget{
+	stage 'restore nuget'{
 		sh 'dotnet restore'
 	}
 
