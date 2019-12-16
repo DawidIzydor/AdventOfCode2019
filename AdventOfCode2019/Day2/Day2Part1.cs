@@ -20,11 +20,11 @@ namespace AdventOfCode2019.Day2
                         endFor = true;
                         break;
                     case 1:
-                        DoAddition(codes, position);
+                        codes[OutPosition(codes, position)] = DoAddition(codes, position);
                         position += 4;
                         break;
                     case 2:
-                        DoMultiplication(codes, position);
+                        codes[OutPosition(codes, position)] = DoMultiplication(codes, position);
                         position += 4;
                         break;
                     default:
@@ -40,35 +40,44 @@ namespace AdventOfCode2019.Day2
             return FormatOutput(codes);
         }
 
+        private static int DoAddition(int[] codes, in int position)
+        {
+            return GetParameter(codes, position, 1) + GetParameter(codes, position, 2);
+        }
+
+        private static int GetParameter(int[] table, int position, int parameterNumber)
+        {
+            return table[table[position + parameterNumber]];
+        }
+
+        private static int OutPosition(int[] codes, int position)
+        {
+            return codes[position + 3];
+        }
+
+        private static int DoMultiplication(int[] codes, int position)
+        {
+            return GetParameter(codes, position, 1) * GetParameter(codes, position, 2);
+        }
+
         private static string FormatOutput(int[] codes)
         {
             var ret = codes.Aggregate("", (current, code) => $"{current}{code},");
             return ret.Substring(0, ret.Length - 1);
         }
 
-        public static string RestoreGravityAssistProgramToAlarm(string input)
+        public static string ReplaceInputValues(string inputString, int input1, int input2)
         {
-            var split = input.Split(',').ToIntArray();
-            split[1] = 12;
-            split[2] = 2;
+            var split = inputString.Split(',').ToIntArray();
+            split[1] = input1;
+            split[2] = input2;
 
             return FormatOutput(split);
         }
 
-        private static void DoMultiplication(int[] codes, int position)
+        public static int GetOutput(string inputString)
         {
-            var addPosition1 = codes[position + 1];
-            var addPosition2 = codes[position + 2];
-            var outPosition = codes[position + 3];
-            codes[outPosition] = codes[addPosition1] * codes[addPosition2];
-        }
-
-        private static void DoAddition(int[] codes, int position)
-        {
-            var addPosition1 = codes[position + 1];
-            var addPosition2 = codes[position + 2];
-            var outPosition = codes[position + 3];
-            codes[outPosition] = codes[addPosition1] + codes[addPosition2];
+            return int.Parse(inputString.Split(',')[0]);
         }
     }
 }
