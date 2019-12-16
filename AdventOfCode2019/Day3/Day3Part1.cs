@@ -23,23 +23,13 @@ namespace AdventOfCode2019.Day3
 
         public static List<Point> GetIntersectionPoints(List<Line> lines1, List<Line> lines2)
         {
-            var ret = new List<Point>();
-            foreach (var line1 in lines1)
-            {
-                foreach (var line2 in lines2)
-                {
-                    if (line1.Intersects(line2))
-                    {
-                        var intersectionPoint = LineHelper.CalculateIntersectionPoint(line1, line2);
-                        if (intersectionPoint.X != 0 || intersectionPoint.Y != 0)
-                        {
-                            ret.Add(intersectionPoint);
-                        }
-                    }
-                }
-            }
-
-            return ret;
+            return (from line1 in lines1
+                from line2 in lines2
+                where line1.Intersects(line2)
+                select LineHelper.CalculateIntersectionPoint(line1, line2)
+                into intersectionPoint
+                where intersectionPoint.X != 0 || intersectionPoint.Y != 0
+                select intersectionPoint).ToList();
         }
 
         public static int GetClosestDistance(Point fromPoint, List<Point> toPointsList)
